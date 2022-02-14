@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Hotel TAJ</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'dist/pickmeup.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dist/handleCounter.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'pickmeup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'handle-counter.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'dist/jquery.scrollUp.js' %}"></script>
+     <script type="text/javascript" src="{% static 'dist/demo.js' %}"></script>
+
+    
+    
+    </head>
+    
+<body>
+    <header class="tm-header">
+        <h1 class="name">Hotel TAJ</h1>
+        <nav class="tm-nav">
+       <div>
+            <ul>
+                <li class="tm-list"><a href="explore">Explore</a></li>
+                <li class="tm-list"><a href="rooms">Rooms</a></li>
+                <li class="tm-list"><a href="booking">My Bookings</a></li>
+                <li><a href="contact1">Contact</a></li>
+                <li class="tm-list"><a href="logout"><span style="color:red;">{{semail}}</span>  Logout</a></li>
+            </ul>    
+            </div>
+        </nav>
+    </header>
+    
+    
+    <section class="tm-main">
+           <p>Booking</p>
+    </section>
+    
+    
+    
+    <section class="tm-booking">
+    
+    <form action="book1" method="post">
+        {% csrf_token %}
+        <div class="tm-form1">
+    <input type="email" name="email" value="{{semail}}" placeholder="{{semail}}" hidden readonly required>
+    <label  id="inlinelable">Place</label>
+    <select name="place" id="rooms" required >
+        {% for i in data %}
+        <option value="{{i.place}}">{{i.place}}</option>
+      {% endfor %}
+
+    </select><br>
+    <label id="inlinelable">Rooms</label>
+    <select name="room" id="rooms" required>
+        <option value="luxurys Suite Rs.9999">Luxury Suite Rs.9999</option>
+        <option value="Delux Suite Rs.7999">Delux Suite Rs.7999</option>
+        <option value="Premier Suite Rs.5999">Premier Suite Rs.5999</option>
+        <option value="Luxury Room Rs.3999">Luxury Room Rs.3999</option>
+        <option value="Delux Room Rs.2499">Delux Room Rs.2499</option>
+        <option value="Premier Room Rs.1499">Premier Room Rs.1499</option>
+    </select> 
+
+    <div class="tm-num2" id="handleCounter2">      
+        <label for="number2">Number of Guests</label><br/>
+        <button type="button" class="counter-minus btn btn-primary">-</button>
+        <input type="text" name="guest" id="number2" value="1">
+            <button type="button" class="counter-plus btn btn-primary">+</button>
+            </div>
+        </div>
+        
+        <div class="vertical-line"> </div>
+        
+    <div class="tm-form2">
+   <div class="tm-cl">
+       <input id="currentDate" type="date" name="date" hidden required />
+					<script>
+						var date = new Date();
+var currentDate = date.toISOString().slice(0,10);
+var currentTime = date.getHours() + ':' + date.getMinutes();
+
+document.getElementById('currentDate').value = currentDate;
+document.getElementById('currentTime').value = currentTime;
+</script>
+        <label  id="inlinelable">Check-In</label>
+       <input type="date" name="checkin" class="form-control" id="date">
+       <label  id="inlinelable">Check-Out</label>
+       <input type="date" name="checkout" class="form-control" id="date">
+       <textarea  placeholder="Any Notes" name="note" rows="3" ></textarea>
+       <input type="text" name="payment" value="Pending" hidden>
+       <input type="text" name="status" value="Pending" hidden>
+       <input type="submit" id="sub" value="Proceed">
+    </div>
+    </div>
+        </form>
+  </section>
+    
+    
+    <footer class="tm-footer">
+        <div class="tm-us">
+        <p class="bold">About Us</p>
+        <p>We are a part of chain of luxury hotels 
+            which extends all over the world. We 
+            provide a luxorious stay with various value
+            added and free services which will make
+            you visit us over and over again.</p>    
+        </div>
+       
+        <div class="tm-address">
+        <p class="bold">Address</p>
+        <p>Near New Bus Stand <br>Trichy <br>
+            Phone : 7639045165 <br>
+            Email : toteltaj@info.com</p>
+        </div>
+        <br/>
+    <div class="tm-media">
+        <a href="#"> <img src="{% static 'images/fb.png' %}"></a>
+        <a href="#"> <img src="{% static 'images/G.png' %}"> </a>
+        <a href="#"> <img src="{% static 'images/twittr.png' %}"> </a>
+        <a href="#">  <img src="{% static 'images/insta.png' %}"> </a>
+        
+        </div>
+<!--        <a href="#">  <img class="tm-up" src="images/up.png"> </a>-->
+    </footer>
+    
+
+    
+    </body>
+    
+</html>
+    

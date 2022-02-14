@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Hotel TAJ</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'dist/pickmeup.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dist/handleCounter.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'pickmeup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'handle-counter.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'dist/jquery.scrollUp.js' %"></script>
+     <script type="text/javascript" src="{% static 'dist/demo.js' %"></script>
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3tO4SQlk9ZVpuhRXlmNfYh37e63-Li2k&callback=initMap">
+    </script>
+
+
+
+    </head>
+
+<body>
+    <header class="tm-header">
+        <h1 class="name">Hotel TAJ</h1>
+        <nav class="tm-nav">
+       <div>
+            <ul>
+                <li class="tm-list"><a href="index">Home</a></li>
+                <li class="tm-list"><a href="login">Explore</a></li>
+                <li class="tm-list"><a href="login">Rooms</a></li>
+            </ul>
+       </div>
+        </nav>
+    </header>
+
+
+    <section class="tm-main">
+           <p>Contact</p>
+    </section>
+
+
+
+    <section class="tm-booking">
+
+    <form action="feedback" method="post">
+        {% csrf_token %}
+        <div class="tm-form1">
+    <input type="text" name="name" placeholder="Name">
+    <input type="email" name="email" placeholder="E-mail">
+            <textarea  placeholder="Your message..." name="message" rows="4" ></textarea>
+
+            <input type="submit" id="sub2" value="Send">
+
+    </div>
+        </form>
+
+        <div class="vertical-line"> </div><br><br>
+            <h1 style="color: #ec3c6a;text-align:center;">Hello {{ Name }}, </h1><br><br>
+            <h2 style="color: white;text-align:center;">Thank you for your Message</h2><br>
+            <h2 style="color: white;text-align:center;">We will get back you soon!!!</h2>
+
+
+  </section>
+
+
+    <footer class="tm-footer">
+        <div class="tm-us">
+        <p class="bold">About Us</p>
+        <p>We are a part of chain of luxury hotels
+            which extends all over the world. We
+            provide a luxorious stay with various value
+            added and free services which will make
+            you visit us over and over again.</p>
+        </div>
+
+        <div class="tm-address">
+        <p class="bold">Address</p>
+        <p>Near New Bus Stand <br>Trichy
+            Phone : 7639045165
+            Email : toteltaj@info.com</p>
+        </div>
+        <br/>
+    <div class="tm-media">
+         <a href="#"> <img src="{% static 'images/fb.png' %}"></a>
+        <a href="#"> <img src="{% static 'images/G.png' %}"> </a>
+        <a href="#"> <img src="{% static 'images/twittr.png' %}"> </a>
+        <a href="#">  <img src="{% static 'images/insta.png' %}"> </a>
+
+        </div>
+<!--        <a href="#">  <img class="tm-up" src="images/up.png"> </a>-->
+    </footer>
+
+
+
+    </body>
+
+</html>

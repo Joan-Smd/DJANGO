@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Hotel TAJ</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'dist/pickmeup.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dist/handleCounter.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'pickmeup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'handle-counter.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="{% static 'dist/jquery.scrollUp.js' %}"></script>
+     <script type="text/javascript" src="{% static 'dist/demo.js' %}"></script>
+
+    
+    
+    </head>
+    
+<body>
+    <header class="tm-header">
+        <h1 class="name">Hotel TAJ</h1>
+        <nav class="tm-nav">
+       <div>
+            <ul>
+                <li class="tm-list"><a href="explore">Explore</a></li>
+                <li class="tm-list"><a href="rooms">Rooms</a></li>
+                <li class="tm-list"><a href="book">Book</a></li>
+                <li><a href="contact1">Contact</a></li>
+                <li class="tm-list"><a href="logout"><span style="color:red;">{{semail}}</span>  Logout</a></li>
+            </ul>    
+            </div>
+        </nav>
+    </header>
+    <h1 class="tm-main" style="text-align:center;" >My Bookings</h1>
+    {% if messages %}
+					{% for message in messages %}
+					<h2 style="color: green;text-align: center">{{message}}</h2>
+
+					{% endfor %}
+					{% endif %}
+    {% if data %}
+    <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Booking Id</th>
+      <th scope="col">Email</th>
+      <th scope="col">Place</th>
+      <th scope="col">Room</th>
+      <th scope="col">Guests</th>
+      <th scope="col">Check-In</th>
+      <th scope="col">Check-Out</th>
+      <th scope="col">Payment</th>
+      <th scope="col">Status</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for i in data %}
+
+    <tr>
+      <td>{{i.id}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.place}}</td>
+        <td>{{i.room}}</td>
+      <td>{{i.guest}}</td>
+      <td>{{i.checkin}}</td>
+        <td>{{i.checkout}}</td>
+        {% if i.payment == "Success" %}
+          <td style="color:green;">Success</td>
+        {% endif %}
+
+        {% if i.payment == "Pending" %}
+                <td style="color:red;">Pending &nbsp;&nbsp; <a href="payment/{{i.id}}" class="btn btn-danger">Pay Now</a> </td>
+
+        {% endif %}
+        {% if i.payment == "Cancel" %}
+        <td style="color:orange;">Booking Cancelled</td>
+        {% endif %}
+
+
+
+        {% if i.status == "Booked" %}
+          <td style="color:green;">Booked &nbsp;&nbsp; <a href="cancel/{{i.id}}" class="btn btn-danger">Cancel Booking</a></td>
+        {% endif %}
+        {% if i.status == "Pending" %}
+        <td style="color:red;">Pending &nbsp;&nbsp; <a href="cancel/{{i.id}}" class="btn btn-danger">Cancel Booking</a</td>
+        {% endif %}
+        {% if i.status == "Cancel" %}
+        <td style="color:orange;">Booking Cancelled</td>
+        {% endif %}
+
+
+    </tr>
+
+      {% endfor %}
+        {% endif %}
+  {% if not data %}
+    <h1 style="text-align:center;">No Bookings Available</h1>
+    {% endif %}
+  </tbody>
+</table>
+    
+    
+    <footer class="tm-footer">
+        <div class="tm-us">
+        <p class="bold">About Us</p>
+        <p>We are a part of chain of luxury hotels 
+            which extends all over the world. We 
+            provide a luxorious stay with various value
+            added and free services which will make
+            you visit us over and over again.</p>    
+        </div>
+       
+        <div class="tm-address">
+        <p class="bold">Address</p>
+        <p>Near New Bus Stand <br>Trichy <br>
+            Phone : 7639045165 <br>
+            Email : toteltaj@info.com</p>
+        </div>
+        <br/>
+    <div class="tm-media">
+        <a href="#"> <img src="{% static 'images/fb.png' %}"></a>
+        <a href="#"> <img src="{% static 'images/G.png' %}"> </a>
+        <a href="#"> <img src="{% static 'images/twittr.png' %}"> </a>
+        <a href="#">  <img src="{% static 'images/insta.png' %}"> </a>
+        
+        </div>
+<!--        <a href="#">  <img class="tm-up" src="images/up.png"> </a>-->
+    </footer>
+    
+
+    
+    </body>
+    
+</html>
+    
